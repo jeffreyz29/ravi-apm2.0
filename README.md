@@ -1,4 +1,4 @@
-# Ravi 2.0 APM Discord Bot
+# Ravi 2.0 APM Discord Bot (IN DEVELOPMENT)
 
 **Ravi 2.0** is a powerful and modular Discord bot designed for flexibility, scalability, and user experience.  
 Built with `discord.py`, Ravi 2.0 supports both prefix and slash commands, and organizes features into clean, structured cogs.
