@@ -1,0 +1,10 @@
+{
+    "default_prefix": ".",
+    "presence": {
+        "status": "online",
+        "activity": {
+            "type": "playing",
+            "text": "with code"
+        }
+    }
+}
