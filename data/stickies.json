@@ -1,0 +1,8 @@
+{
+  "guild_id": {
+    "channel_id": {
+      "message": "This is a sticky message",
+      "last_message_id": 123456789
+    }
+  }
+}
