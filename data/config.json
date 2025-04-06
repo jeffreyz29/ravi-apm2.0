@@ -1,10 +1,14 @@
 {
-    "default_prefix": ".",
+  "default_prefix": ".",
+  "bot": {
+    "avatar_url": "https://cdn.example.com/avatar.png",
+    "banner_url": "https://cdn.example.com/banner.png",
     "presence": {
-        "status": "online",
-        "activity": {
-            "type": "playing",
-            "text": "with code"
-        }
+      "status": "online",
+      "activity": {
+        "type": "playing",
+        "text": "with code"
+      }
     }
+  }
 }
