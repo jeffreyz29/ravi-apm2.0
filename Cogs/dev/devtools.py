@@ -138,5 +138,57 @@ class DevTools(commands.Cog):
             embed.add_field(name=guild.name, value=f"ID: `{guild.id}` | Members: {guild.member_count}", inline=False)
         await ctx.send(embed=embed)
 
+
+    @commands.hybrid_command(name="inspectguild", description="Inspect a guild by its ID.")
+    @commands.check(is_dev())
+    async def inspectguild(self, ctx, guild_id: int):
+        guild = self.bot.get_guild(guild_id)
+        if not guild:
+            await ctx.send("Guild not found.")
+            return
+
+        embed = discord.Embed(title=f"🔍 Guild Info: {guild.name}", color=discord.Color.blue(), timestamp=datetime.datetime.utcnow())
+        embed.set_thumbnail(url=guild.icon.url if guild.icon else discord.Embed.Empty)
+        embed.add_field(name="ID", value=guild.id, inline=True)
+        embed.add_field(name="Owner", value=str(guild.owner), inline=True)
+        embed.add_field(name="Members", value=guild.member_count, inline=True)
+        embed.add_field(name="Text Channels", value=len(guild.text_channels), inline=True)
+        embed.add_field(name="Voice Channels", value=len(guild.voice_channels), inline=True)
+        embed.add_field(name="Roles", value=len(guild.roles), inline=True)
+        embed.set_footer(text=f"Created at: {guild.created_at}")
+        await ctx.send(embed=embed)
+
+    @commands.hybrid_command(name="eval", description="Evaluate Python code.")
+    @commands.check(is_dev())
+    async def _eval(self, ctx, *, code: str):
+        import io, textwrap, traceback, contextlib
+        code = code.strip("` ")
+        local_vars = {
+            "discord": discord,
+            "commands": commands,
+            "bot": self.bot,
+            "ctx": ctx,
+            "author": ctx.author,
+            "guild": ctx.guild,
+            "channel": ctx.channel,
+            "message": ctx.message
+        }
+        stdout = io.StringIO()
+        try:
+            with contextlib.redirect_stdout(stdout):
+                exec(
+                    f"async def func():\n{textwrap.indent(code, '    ')}",
+                    local_vars
+                )
+                result = await local_vars["func"]()
+        except Exception as e:
+            value = stdout.getvalue()
+            await ctx.send(f"❌ Error:\n```py\n{value}{traceback.format_exc()}```")
+        else:
+            value = stdout.getvalue()
+            msg = f"✅ Eval Result:\n```py\n{value}\n{result if result is not None else ''}```"
+            await ctx.send(msg[:2000])
+
+
 async def setup(bot):
     await bot.add_cog(DevTools(bot))
