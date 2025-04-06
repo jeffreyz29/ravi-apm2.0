@@ -36,18 +36,9 @@ ravi/
 │   ├── blacklisted_guilds.json
 │   ├── prefixes.json           # Per-guild prefixes (managed by prefix system)
 ├── cogs/
-│   ├── administration/
-│   │   ├── whois.py
-│   │   ├── serverinfo.py
-│   │   ├── botinfo.py
-│   │   ├── pin.py
-│   │   ├── tag.py
-│   │   ├── quote.py
-│   │   ├── slowmode.py
-│   ├── moderation/             # prune, delete, etc.
+│   ├── administration/         # avatar, moderation, etc.
+│   ├── dev/                    # developer-only 
 │   ├── ticketing/              # full-featured ticket manager
-│   ├── utility/                # sticky messages, tools
-│   ├── dev/                    # developer-only cogs (devtools, command logger, guild logger)
 ```
 
 ---
@@ -92,7 +83,7 @@ python bot.py
 
 ## 📌 Quick Notes
 
-- Use `.sticky`, `.quote`, `.tag`, `.pin`, `.unpin` from admin utilities
+- If you encounter a bug, please don't hesitate to ask in support server for help
 - All admin/utility/mod logs are separated into modular cog files
 - Use `.blacklist`, `.unblacklist`, `.inspectguild`, and `.eval` responsibly (dev-only)
 
