@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+env/
+venv/
+
+# Config and sensitive files
+.env
+data/config.json
+data/blacklisted_guilds.json
+data/prefixes.json
+data/transcripts.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs / transcripts
+*.log
+*.txt
+
+# VS Code / IDE
+.vscode/
+.idea/
